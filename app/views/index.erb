@@ -6,7 +6,13 @@
   <table>
     <tr><td>name</td><td>skill</td><td>years</td><td>formal?</td></tr>
     <% User.all.each do |user| %>
-      <tr><td> <%=user.name%><br> </td>
+      <tr><td> <%=user.name%> <%= user.id %><br>         
+        <% if session[:user_id] == user.id %>
+          <a href="/add_proficiency"> add proficiency </a>
+        <% end %>
+
+      </td>
+
 
       <td> <% user.proficiencies.each do |proficiency| %>
               <%= proficiency.skill.name %> <br>
