@@ -17,6 +17,34 @@ describe Proficiency do
       expect(a_mock.years).to eq(6)
       expect(a_mock.formal?).to eq true
     end
+
+
+  context "create associations" do 
+
+      it "tests that all of the associations are set up correctly" do
+        zoe = User.create(name: "Zoe", email: "serenity@serenity.com", password: "password")
+        inara = User.create(name: "Inara", email: "serenity@serenity.com", password: "password")
+
+        javascript = Skill.create(name: "Javascript", context: "technical")
+        ruby = Skill.create(name: "ruby", context: "technical")
+
+        zoe_knows_javascript = Proficiency.create(user_id: zoe.id, skill_id: javascript.id, formal: false)
+        zoe_knows_ruby = Proficiency.create(user_id: zoe.id, skill_id: ruby.id, formal: false)
+
+        inara_knows_javascript = Proficiency.create(user_id: inara.id, skill_id: javascript.id, formal: true) #for some reason, inara's id is being defined as nil in the database
+        inara_knows_ruby = Proficiency.create(user_id: inara.id, skill_id: ruby.id, formal: true)       
+        
+        expect(zoe.proficiencies.count).to eq(2) #user has many proficiencies
+        expect(zoe.skills.count).to eq(2)
+
+        expect(javascript.proficiencies).to eq(2)
+        expect(javascript.users).to eq(1)
+
+
+
+      end
+    end
+
   end
 
 end
