@@ -2,5 +2,31 @@
   <h1>User Skills and Levels</h1>
 
   <%# TODO: display the skills and proficiency levels for each user ... %>
-  
+
+  <table>
+    <tr><td>name</td><td>skill</td><td>years</td><td>formal?</td></tr>
+    <% User.all.each do |user| %>
+      <tr><td> <%=user.name%><br> </td>
+
+      <td> <% user.proficiencies.each do |proficiency| %>
+              <%= proficiency.skill.name %> <br>
+
+           <% end %> 
+      </td>
+
+      <td> <% user.proficiencies.each do |proficiency| %>
+              <%= proficiency.years %> <br>
+
+           <% end %> 
+      </td>
+      <td> <% user.proficiencies.each do |proficiency| %>
+              <%= proficiency.formal %> <br>
+
+           <% end %> 
+      </td>
+
+      </tr>
+    <% end %>
+  </table>
+
 </div>
