@@ -1,0 +1,22 @@
+<div class="container">
+<form id="sign-up" method="post" action="/users">
+  <input type="text" name="proficiency[years]" placeholder="years"> 
+  <span id="name-errors" class="errors"></span><br>
+  <label> formal</label> <input type="checkbox" name=proficiency[formal]>
+
+  <span id="entered_password-errors" class="errors"></span>
+  <br>
+  <select>
+    <select>
+      <%Skill.all.each do |skill| %>
+        <p> <%= skill.name %>
+          <option value="proficiency[<%=skill.id%>]"> <%= skill.name%> </option> 
+      <%end %>
+
+</select>
+
+  </select>
+
+  <div class="submit"><input type="submit" value="Sign Up"></div>
+</form>
+</div>
